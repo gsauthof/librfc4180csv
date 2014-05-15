@@ -310,7 +310,7 @@ namespace RFC4180 {
         ostringstream o;
         o << "CSV lexer automaton in error state";
         o << " - context: |";
-        o.write(p, std::min(20l, pe-p));
+        o.write(p, std::min(size_t(20), size_t(pe-p)));
         o << "|";
         throw runtime_error(o.str());
       }
