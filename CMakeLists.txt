@@ -48,6 +48,7 @@ add_library(rfc4180csv SHARED
 set_property(TARGET rfc4180csv PROPERTY INCLUDE_DIRECTORIES
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_SOURCE_DIR}/libbuffer
+  ${Boost_INCLUDE_DIRS}
 )
 
 add_library(rfc4180csv_static STATIC
@@ -60,4 +61,5 @@ endif()
 set_property(TARGET rfc4180csv_static PROPERTY INCLUDE_DIRECTORIES
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_SOURCE_DIR}/libbuffer
+  ${Boost_INCLUDE_DIRS}
 )
