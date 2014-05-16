@@ -311,7 +311,7 @@ namespace RFC4180 {
         o << "CSV lexer automaton in error state";
         o << " - context: |";
         o.write(p, std::min(20l, pe-p));
-        o << "|";
+        o << "| (record " << (count_cb.csv_nr()+1) << ')';
         throw runtime_error(o.str());
       }
       buffer.stop(pe);
