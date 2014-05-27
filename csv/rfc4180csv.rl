@@ -40,16 +40,16 @@ action buffer_begin_next
 }
 action buffer_add_char
 {
-  buffer.resume(p);
+  buffer.cont(p);
   buffer.stop(p+1);
 }
 action buffer_stop
 {
   buffer.stop(p);
 }
-action buffer_resume
+action buffer_cont
 {
-  buffer.resume(p);
+  buffer.cont(p);
 }
 action buffer_end
 {
@@ -216,7 +216,7 @@ escaped_not = TEXTDATA | COMMA | CR | LF ;
 
 escaped = DQUOTE 
               @buffer_begin_next
-            ( escaped_not >buffer_resume %buffer_stop |
+            ( escaped_not >buffer_cont %buffer_stop |
               (DQUOTE DQUOTE @buffer_add_char )  ) ** DQUOTE %buffer_end_prev ;
 
 # field = (escaped / non-escaped)
@@ -314,7 +314,7 @@ namespace RFC4180 {
         o << "| (record " << (count_cb.csv_nr()+1) << ')';
         throw runtime_error(o.str());
       }
-      buffer.stop(pe);
+      buffer.pause(pe);
       if (pe < range.second) {
         input_stack.push(make_pair(pe, range.second));
         break_out = false;
